@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the whos_amung_us module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function whos_amung_us_schema() {
+
+  $schema['whos_amung_us_block'] = array(
+    'description' => 'Stores whos.amung.us custom blocks.',
+    'fields' => array(
+      'bid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => "The whos.amung.us block's unique ID.",
+      ),
+      'info' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => "The whos.amung.us block's administrative title.",
+      ),
+      'config' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+        'size' => 'big',
+        'description' => "The whos.amung.us block configuration.",
+      ),
+    ),
+    'primary key' => array('bid'),
+  );
+
+  return $schema;
+
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function whos_amung_us_uninstall() {
+
+  variable_del('whos_amung_us_configuration');
+
+}

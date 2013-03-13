@@ -1,0 +1,154 @@
+<?php
+
+/**
+ * @file
+ * Controls whos.amung.us blocks.
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function whos_amung_us_permission() {
+
+  return array(
+    'administer whos_amung_us blocks' => array(
+      'title' => t('Administer whos.amung.us blocks'),
+    ),
+  );
+
+}
+
+/**
+ * Implements hook_menu().
+ */
+function whos_amung_us_menu() {
+
+  $items = array();
+  $items['admin/structure/block/add/whos-amung-us'] = array(
+    'title' => 'Add block',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('whos_amung_us_configuration_form'),
+    'access arguments' => array('administer whos_amung_us blocks'),
+    'type' => MENU_LOCAL_ACTION,
+  );
+  return $items;
+
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function whos_amung_us_block_info() {
+
+  $blocks = array();
+  $sql = db_select('whos_amung_us_block', 'b')
+    ->fields('b', array('bid', 'info'))
+    ->execute()
+  ;
+  while ($row = $sql->fetchAssoc()) {
+    $blocks[$row['bid']] = array(
+      'info' => t($rows['info']),
+      'cache' => DRUPAL_CACHE_PER_ROLE,
+    );
+  }
+  return $blocks;
+
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function whos_amung_us_block_configure($delta = '') {
+
+  $form = array();
+  if (is_numeric($delta)) {
+    $sql = db_select('whos_amung_us_block', 'b')
+      ->fields('b', array('bid', 'info', 'config'))
+      ->condition('bid', $delta)
+      ->execute()
+    ;
+    if ($row = $sql->fetchAssoc()) {
+      $form = drupal_get_form(
+        'whos_amung_us_configuration_form',
+        array(
+          'bid' => $row['bid'],
+          'info' => $row['info'],
+          'config' => $row['config'],
+        )
+      );
+    }
+  }
+  return $form;
+
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function whos_amung_us_block_save($delta = '', $edit = array()) {
+
+  if ($delta == 'configurable') {
+    // TO-DO: Save in database
+  }
+  return;
+
+}
+
+/**
+ * Form constructor for the whos.amung.us block form.
+ *
+ * @param $options
+ *   (optional) An associative array of information. Defaults to NULL.
+ * @param $general
+ *   (optional) Indicates if it's general configuration or not. Defaults to FALSE.
+ *
+ * @ingroup forms
+ */
+function whos_amung_us_configuration_form($options = NULL, $general = FALSE) {
+
+  if ($general) {
+    $options = variable_get('whos_amung_us_configuration', array());
+  }
+  else{
+    if (!$options) {
+      $options = array();
+    }elseif (is_string($options)) {
+      $options = unserialize($options);
+    }
+  }
+
+  $form = array();
+
+  $widgets = array(
+    'general',
+    'classic',
+    'colored',
+    'small',
+    'tab',
+    'map',
+  );
+
+  $default = 'general';
+  if ($general) {
+    unset($widgets['general']);
+    $default = 'classic';
+  }
+  else {
+    $form['bid'] = array(
+      '#type' => 'hidden',
+      '#value' => isset($options['bid']) ? $options['bid'] : '',
+    );
+  }
+
+  $form['widget'] = array(
+    '#type' => 'select',
+    '#title' => t('Widget type'),
+    '#required' => TRUE,
+    '#multiple' => FALSE,
+    '#default_value' => $default,
+    '#options' => $widgets,
+  );
+
+  return $form;
+
+}
