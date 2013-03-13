@@ -1,6 +1,5 @@
 name = Whos.amung.us
 description = Allows to insert whos.amung.us widgets in the website.
 package = Blocks
-version = 7.x-1.x
 core = 7.x
 configure = admin/structure/whos-amung-us
