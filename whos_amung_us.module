@@ -21,10 +21,10 @@ function whos_amung_us_permission() {
 /**
  * Loads a whos.amung.us custom block.
  *
- * @param $name
+ * @param string $name
  *   The unique whos.amung.us block machine name.
  *
- * @return
+ * @return array
  *   A fully-loaded whos.amung.us block upon successful load,
  *   or NULL if it can't be loaded
  */
@@ -33,8 +33,7 @@ function whos_amung_us_item_load($name) {
   $sql = db_select('whos_amung_us_block', 'b')
     ->fields('b')
     ->condition('machine_name', $name)
-    ->execute()
-  ;
+    ->execute();
 
   if ($row = $sql->fetchAssoc()) {
     return $row;
@@ -82,8 +81,7 @@ function whos_amung_us_block_info() {
   $blocks = array();
   $sql = db_select('whos_amung_us_block', 'b')
     ->fields('b', array('bid', 'info'))
-    ->execute()
-  ;
+    ->execute();
   while ($row = $sql->fetchAssoc()) {
     $blocks[$row['bid']] = array(
       'info' => t($rows['info']),
@@ -123,7 +121,7 @@ function whos_amung_us_block_save($delta = '', $edit = array()) {
 
   if ($delta == 'configurable') {
     kpr($edit);die;
-    // TO-DO: Save in database
+    // TO-DO: Save in database.
   }
   return;
 
@@ -132,10 +130,10 @@ function whos_amung_us_block_save($delta = '', $edit = array()) {
 /**
  * Form constructor for the whos.amung.us block form.
  *
- * @param $options
+ * @param array $options
  *   (optional) An associative array of information. Defaults to NULL.
- * @param $general
- *   (optional) Indicates if it's general configuration or not. Defaults to FALSE.
+ * @param bool $general
+ *   (optional) Indicates if it's general configuration form. Defaults to FALSE.
  *
  * @ingroup forms
  */
@@ -144,10 +142,11 @@ function whos_amung_us_configuration_form($options = NULL, $general = FALSE) {
   if ($general) {
     $options = variable_get('whos_amung_us_configuration', array());
   }
-  else{
+  else {
     if (!$options) {
       $options = array();
-    }elseif (is_string($options)) {
+    }
+    elseif (is_string($options)) {
       $options = unserialize($options);
     }
   }

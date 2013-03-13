@@ -1,5 +1,5 @@
 name = Whos.amung.us
-description = Controls the visual building blocks a page is constructed with. Blocks are boxes of 
+description = Allows to insert whos.amung.us widgets in the website.
 package = Blocks
 version = 7.x-1.x
 core = 7.x

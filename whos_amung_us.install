@@ -10,8 +10,7 @@
  */
 function whos_amung_us_schema() {
 
-  // TO-DO: Unique machine name
-
+  $schema = array();
   $schema['whos_amung_us_block'] = array(
     'description' => 'Stores whos.amung.us custom blocks.',
     'fields' => array(
