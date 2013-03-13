@@ -19,17 +19,56 @@ function whos_amung_us_permission() {
 }
 
 /**
+ * Loads a whos.amung.us custom block.
+ *
+ * @param $name
+ *   The unique whos.amung.us block machine name.
+ *
+ * @return
+ *   A fully-loaded whos.amung.us block upon successful load,
+ *   or NULL if it can't be loaded
+ */
+function whos_amung_us_item_load($name) {
+
+  $sql = db_select('whos_amung_us_block', 'b')
+    ->fields('b')
+    ->condition('machine_name', $name)
+    ->execute()
+  ;
+
+  if ($row = $sql->fetchAssoc()) {
+    return $row;
+  }
+  return NULL;
+
+}
+
+/**
  * Implements hook_menu().
  */
 function whos_amung_us_menu() {
 
   $items = array();
-  $items['admin/structure/block/add/whos-amung-us'] = array(
+  $items['admin/structure/whos-amung-us/add'] = array(
     'title' => 'Add block',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('whos_amung_us_configuration_form'),
     'access arguments' => array('administer whos_amung_us blocks'),
     'type' => MENU_LOCAL_ACTION,
+  );
+  $items['admin/structure/whos-amung-us/%whos_amung_us_item/configure'] = array(
+    /*'title' => 'Add block',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('whos_amung_us_configuration_form'),
+    'access arguments' => array('administer whos_amung_us blocks'),
+    'type' => MENU_LOCAL_ACTION,*/
+  );
+  $items['admin/structure/whos-amung-us/%whos_amung_us_item/delete'] = array(
+    /*'title' => 'Add block',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('whos_amung_us_configuration_form'),
+    'access arguments' => array('administer whos_amung_us blocks'),
+    'type' => MENU_LOCAL_ACTION,*/
   );
   return $items;
 
@@ -61,22 +100,17 @@ function whos_amung_us_block_info() {
 function whos_amung_us_block_configure($delta = '') {
 
   $form = array();
-  if (is_numeric($delta)) {
-    $sql = db_select('whos_amung_us_block', 'b')
-      ->fields('b', array('bid', 'info', 'config'))
-      ->condition('bid', $delta)
-      ->execute()
-    ;
-    if ($row = $sql->fetchAssoc()) {
-      $form = drupal_get_form(
-        'whos_amung_us_configuration_form',
-        array(
-          'bid' => $row['bid'],
-          'info' => $row['info'],
-          'config' => $row['config'],
-        )
-      );
-    }
+  $item = whos_amung_us_item_load($delta);
+  if ($item) {
+    $form = drupal_get_form(
+      'whos_amung_us_configuration_form',
+      array(
+        'bid' => $item['bid'],
+        'machine_name' => $item['machine_name'],
+        'info' => $item['info'],
+        'config' => $item['config'],
+      )
+    );
   }
   return $form;
 
@@ -88,6 +122,7 @@ function whos_amung_us_block_configure($delta = '') {
 function whos_amung_us_block_save($delta = '', $edit = array()) {
 
   if ($delta == 'configurable') {
+    kpr($edit);die;
     // TO-DO: Save in database
   }
   return;

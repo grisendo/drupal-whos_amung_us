@@ -1,1 +1,6 @@
 name = Whos.amung.us
+description = Controls the visual building blocks a page is constructed with. Blocks are boxes of 
+package = Blocks
+version = 7.x-1.x
+core = 7.x
+configure = admin/structure/whos-amung-us

@@ -10,6 +10,8 @@
  */
 function whos_amung_us_schema() {
 
+  // TO-DO: Unique machine name
+
   $schema['whos_amung_us_block'] = array(
     'description' => 'Stores whos.amung.us custom blocks.',
     'fields' => array(
@@ -26,12 +28,22 @@ function whos_amung_us_schema() {
         'default' => '',
         'description' => "The whos.amung.us block's administrative title.",
       ),
+      'machine_name' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => "The whos.amung.us block's machine name.",
+      ),
       'config' => array(
         'type' => 'text',
         'not null' => FALSE,
         'size' => 'big',
         'description' => "The whos.amung.us block configuration.",
       ),
+    ),
+    'unique keys' => array(
+      'wau_machine_name' => array('machine_name'),
     ),
     'primary key' => array('bid'),
   );
