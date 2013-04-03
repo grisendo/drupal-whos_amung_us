@@ -52,10 +52,26 @@ function whos_amung_us_schema() {
 }
 
 /**
+ * Implements hook_install().
+ */
+function whos_amung_us_install() {
+
+  module_load_include('inc', 'whos_amung_us', 'includes/whos_amung_us.admin');
+
+  variable_set('whos_amung_us_key', whos_amung_us_get_new_key());
+
+  $default_config = whos_amung_us_default_form_values();
+  $default_config['widget'] = 'classic';
+  variable_set('whos_amung_us_configuration', $default_config);
+
+}
+
+/**
  * Implements hook_uninstall().
  */
 function whos_amung_us_uninstall() {
 
+  variable_del('whos_amung_us_key');
   variable_del('whos_amung_us_configuration');
 
 }

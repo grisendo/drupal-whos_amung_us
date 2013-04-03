@@ -1,0 +1,6 @@
+name = Whos.amung.us CTools
+description = Whos.amung.us ctools integration.
+package = Blocks
+core = 7.x
+dependencies[] = whos_amung_us
+dependencies[] = ctools
