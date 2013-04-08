@@ -410,6 +410,53 @@ function _whos_amung_us_block_save($delta = '', $edit = array()) {
 
 }
 
+function whos_amung_us_configuration_delete_form($form, &$form_state, $item) {
+
+  $form['delta'] = array('#type' => 'hidden', '#value' => $item['machine_name']);
+  $form['block_title'] = array('#type' => 'hidden', '#value' => $item['info']);
+  return confirm_form(
+    $form,
+    t(
+      'Are you sure you want to delete the "%name" block?',
+      array(
+        '%name' => $item['info'],
+      )
+    ),
+    'admin/structure/block',
+    NULL,
+    t('Delete'),
+    t('Cancel')
+  );
+
+}
+
+function whos_amung_us_configuration_delete_form_submit($form, &$form_state) {
+
+  db_delete('whos_amung_us_block')
+    ->condition('machine_name', $form_state['values']['delta'])
+    ->execute();
+  drupal_set_message(t('The block "%name" has been removed.', array('%name' => $form_state['values']['block_title'])));
+  cache_clear_all();
+  $form_state['redirect'] = 'admin/structure/block';
+  return;
+
+}
+
+function _whos_amung_us_form_block_admin_display_form_alter(&$form, $form_state) {
+
+  $sql = db_select('whos_amung_us_block', 'b')
+    ->fields('b', array('machine_name'))
+    ->execute();
+  while ($row = $sql->fetchAssoc()) {
+    $form['blocks']['whos_amung_us_' . $row['machine_name']]['delete'] = array(
+      '#type' => 'link',
+      '#title' => t('delete'),
+      '#href' => 'admin/structure/block/delete-whos-amung-us-block/' . $row['machine_name'],
+    );
+  }
+
+}
+
 function whos_amung_us_get_new_key() {
 
   $request = drupal_http_request(

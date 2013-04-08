@@ -60,6 +60,13 @@ function whos_amung_us_item_load($name) {
 
 }
 
+function whos_amung_us_load($name) {
+
+  $item = whos_amung_us_item_load($name);
+  return $item ? $item : FALSE;
+
+}
+
 /**
  * Implements hook_menu().
  */
@@ -74,6 +81,14 @@ function whos_amung_us_menu() {
     'access arguments' => array('administer whos_amung_us blocks'),
     'file' => 'includes/whos_amung_us.admin.inc',
     'type' => MENU_LOCAL_ACTION,
+  );
+  $items['admin/structure/block/delete-whos-amung-us-block/%whos_amung_us'] = array(
+    'title' => 'Delete whos.amung.us block',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('whos_amung_us_configuration_delete_form', 4),
+    'access arguments' => array('administer whos_amung_us blocks'),
+    'file' => 'includes/whos_amung_us.admin.inc',
+    'type' => MENU_CALLBACK,
   );
   $items['admin/config/services/whos-amung-us'] = array(
     'title' => 'Whos.amung.us',
@@ -194,5 +209,12 @@ function whos_amung_us_default_form_values() {
     'width' => '420',
     'height' => '210',
   );
+
+}
+
+function whos_amung_us_form_block_admin_display_form_alter(&$form, $form_state) {
+
+  module_load_include('inc', 'whos_amung_us', 'includes/whos_amung_us.admin');
+  _whos_amung_us_form_block_admin_display_form_alter($form, $form_state);
 
 }
