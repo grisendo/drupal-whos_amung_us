@@ -22,8 +22,8 @@ function whos_amung_us_bean_bean_types() {
   $plugins = array();
   $plugin_path = drupal_get_path('module', 'whos_amung_us_bean') . '/plugins/beans';
   $plugins['whos_amung_us'] = array(
-    'label' => t("Who's amung us"),
-    'description' => t("Who's amung us"),
+    'label' => t("Whos.amung.us"),
+    'description' => t("Whos.amung.us"),
     'handler' => array(
       'class' => 'WhosAmungUsBean',
       'parent' => 'bean',

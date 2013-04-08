@@ -17,12 +17,12 @@ class views_handler_area_whos_amung_us extends views_handler_area {
   }
 
   public function option_definition() {
-    $options = parent::option_definition();    
+    $options = parent::option_definition();
     $this->definition['field'] = !empty($this->definition['field']) ? $this->definition['field'] : '';
     $label = !empty($this->definition['label']) ? $this->definition['label'] : $this->definition['field'];
     $default_options = whos_amung_us_default_form_values();
     foreach ($default_options as $key => $value) {
-      $options[$key] = array('default' => $value, 'translatable' => FALSE); 
+      $options[$key] = array('default' => $value, 'translatable' => FALSE);
     }
     return $options;
   }
@@ -31,14 +31,19 @@ class views_handler_area_whos_amung_us extends views_handler_area {
    * Provide text for the administrative summary.
    */
   public function admin_summary() {
-    return $this->label() . ': ' . $this->options['widget'];
+    $label = $this->label();
+    if ($label) {
+      return $label . ': ' . $this->options['widget'];
+    }
+    else {
+      return $this->options['widget'];
+    }
   }
 
   /**
    * Build the options form.
    */
   public function options_form(&$form, &$form_state) {
-    drupal_add_js('misc/states.js');
     module_load_include('inc', 'whos_amung_us', 'includes/whos_amung_us.admin');
     parent::options_form($form, $form_state);
     $form['label'] = array(
@@ -47,11 +52,11 @@ class views_handler_area_whos_amung_us extends views_handler_area {
       '#default_value' => isset($this->options['label']) ? $this->options['label'] : '',
       '#description' => t('The label for this area that will be displayed only administratively.'),
     );
-    $f2 = array(
+    $options = array(
       'values' => $this->options,
     );
-    $f2['values'] += whos_amung_us_default_form_values();
-    $form += whos_amung_us_configuration_form(array(), $f2, 'views', 'options');
+    $options['values'] += whos_amung_us_default_form_values();
+    $form += whos_amung_us_configuration_form(array(), $options, 'views', 'options');
   }
 
   /**

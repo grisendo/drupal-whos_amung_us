@@ -50,5 +50,5 @@ function theme_whos_amung_us($variables) {
   $output .= 'document.getElementsByTagName("head")[0].appendChild(s);';
   $output .= '})();</script>';
   return $output;
-  
+
 }
