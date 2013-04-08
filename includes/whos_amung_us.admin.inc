@@ -1,6 +1,5 @@
 <?php
 
-
 function whos_amung_us_configuration_new_form() {
 
   $form_state = array(
@@ -19,7 +18,7 @@ function whos_amung_us_configuration_config_form() {
 
 }
 
-function whos_amung_us_configuration_form($form, $form_state, $id = 'general') {
+function whos_amung_us_configuration_form($form, $form_state, $id = 'general', $sublevel = NULL) {
 
   $form = array();
 
@@ -100,6 +99,13 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general') {
     '#options' => $widgets,
   );
 
+  if ($sublevel) {
+    $jname = ':input[name="' . $sublevel . '[widget]"]';
+  }
+  else {
+    $jname = ':input[name="widget"]';
+  }
+
   $form['background'] = array(
     '#type' => 'textfield',
     '#title' => t('Background color'),
@@ -109,10 +115,10 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general') {
     ),
     '#states' => array(
       'visible' => array(
-        ':input[name="widget"]' => array('value' => 'colored'),
+        $jname => array('value' => 'colored'),
       ),
       'required' => array(
-        ':input[name="widget"]' => array('value' => 'colored'),
+        $jname => array('value' => 'colored'),
       ),
     ),
   );
@@ -126,10 +132,10 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general') {
     ),
     '#states' => array(
       'visible' => array(
-        ':input[name="widget"]' => array('value' => 'colored'),
+        $jname => array('value' => 'colored'),
       ),
       'required' => array(
-        ':input[name="widget"]' => array('value' => 'colored'),
+        $jname => array('value' => 'colored'),
       ),
     ),
   );
@@ -151,10 +157,10 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general') {
     ),
     '#states' => array(
       'visible' => array(
-        ':input[name="widget"]' => array('value' => 'tab'),
+        $jname => array('value' => 'tab'),
       ),
       'required' => array(
-        ':input[name="widget"]' => array('value' => 'tab'),
+        $jname => array('value' => 'tab'),
       ),
     ),
   );
@@ -165,10 +171,10 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general') {
     '#default_value' => $config['width'],
     '#states' => array(
       'visible' => array(
-        ':input[name="widget"]' => array('value' => 'map'),
+        $jname => array('value' => 'map'),
       ),
       'required' => array(
-        ':input[name="widget"]' => array('value' => 'map'),
+        $jname => array('value' => 'map'),
       ),
     ),
   );
@@ -179,10 +185,10 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general') {
     '#default_value' => $config['height'],
     '#states' => array(
       'visible' => array(
-        ':input[name="widget"]' => array('value' => 'map'),
+        $jname => array('value' => 'map'),
       ),
       'required' => array(
-        ':input[name="widget"]' => array('value' => 'map'),
+        $jname => array('value' => 'map'),
       ),
     ),
   );
@@ -204,10 +210,10 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general') {
     ),
     '#states' => array(
       'visible' => array(
-        ':input[name="widget"]' => array('value' => 'map'),
+        $jname => array('value' => 'map'),
       ),
       'required' => array(
-        ':input[name="widget"]' => array('value' => 'map'),
+        $jname => array('value' => 'map'),
       ),
     ),
   );
@@ -292,10 +298,10 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general') {
     ),
     '#states' => array(
       'visible' => array(
-        ':input[name="widget"]' => array('value' => 'map'),
+        $jname => array('value' => 'map'),
       ),
       'required' => array(
-        ':input[name="widget"]' => array('value' => 'map'),
+        $jname => array('value' => 'map'),
       ),
     ),
   );
@@ -310,7 +316,7 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general') {
   if ($id == 'newblock') {
     $form['#submit'] = array('whos_amung_us_configuration_form_submit');
   }
-  else if ($id == 'general') {
+  elseif ($id == 'general') {
     $form['#submit'] = array('whos_amung_us_configuration_form_general_submit');
   }
 
