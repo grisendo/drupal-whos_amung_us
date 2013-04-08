@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @file
+ * Beans plugin for the Whos.amung.us module.
+ */
 class WhosAmungUsBean extends BeanPlugin {
 
   /**

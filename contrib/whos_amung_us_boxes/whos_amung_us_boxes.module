@@ -13,7 +13,7 @@ function whos_amung_us_boxes_boxes_plugins() {
   $info = array();
   $path = drupal_get_path('module', 'whos_amung_us_boxes') . '/plugins/boxes';
   $info['whos_amung_us'] = array(
-    'title' => "Who's amung us",
+    'title' => "Whos.amung.us",
     'handler' => array(
       'parent' => 'box',
       'class' => 'whos_amung_us',
