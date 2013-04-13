@@ -1,5 +1,9 @@
 <?php
 
+// TO-DO: Botón de intentar obtener una nueva clave, por AJAX y por carga normal. Cuidado seguridad!
+// TO-DO: Comprobar exportable features
+// TO-DO: Múltiples claves?
+
 /**
  * @file
  * Controls whos.amung.us blocks.
@@ -216,5 +220,18 @@ function whos_amung_us_form_block_admin_display_form_alter(&$form, $form_state) 
 
   module_load_include('inc', 'whos_amung_us', 'includes/whos_amung_us.admin');
   _whos_amung_us_form_block_admin_display_form_alter($form, $form_state);
+
+}
+
+function whos_amung_us_features_api() {
+
+  return array(
+    'whos_amung_us' => array(
+      'name' => 'Whos.amung.us blocks',
+      'file' => drupal_get_path('module', 'whos_amung_us') . '/includes/whos_amung_us.features.inc',
+      'default_hook' => 'whos_amung_us_default_blocks',
+      'feature_source' => TRUE,
+    ),
+  );
 
 }

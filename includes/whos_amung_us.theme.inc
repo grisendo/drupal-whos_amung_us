@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Theme functions for Whos.amung.us module.
+ */
+
 function theme_whos_amung_us($variables) {
 
   $widget = $variables['widget'];

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Ctools content-type plugin to provide a whos.amung.us form
+ */
+
 $plugin = array(
   'title' => t("Whos.amung.us"),
   'description' => t("Whos.amung.us"),

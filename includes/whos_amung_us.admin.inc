@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Administration pages provided by Whos.amung.us module.
+ */
+
+/**
+ * Menu callback for admin/structure/block/add-whos-amung-us-block.
+ */
 function whos_amung_us_configuration_new_form() {
 
   $form_state = array(
@@ -56,7 +64,6 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general', $
       '#required' => TRUE,
       '#default_value' => variable_get('whos_amung_us_key', ''),
     );
-    // TO-DO: Botón de intentar obtener una nueva, por AJAX y por carga normal.
   }
 
   $form['#attached'] = array(
@@ -324,6 +331,10 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general', $
 
 }
 
+/**
+ * Submit handler for the whos_amung_us_configuration_form() form
+ * when creating a new block.
+ */
 function whos_amung_us_configuration_form_general_submit($form, &$form_state) {
 
   $config = array(

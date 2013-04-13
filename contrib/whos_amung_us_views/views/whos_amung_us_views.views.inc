@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Provide views data and handler information for Whos.amung.us module.
+ */
+
+/**
  * Implements hook_views_data_alter().
  */
 function whos_amung_us_views_views_data_alter(&$data) {

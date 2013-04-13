@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * @file
+ * Provide views area handler for whos.amung.us module.
+ */
+
 class views_handler_area_whos_amung_us extends views_handler_area {
 
+  /**
+   * Override init function to allow show it when empty.
+   */
   public function init(&$view, &$options) {
     parent::init($view, $options);
     if ($this->handler_type == 'empty') {
@@ -9,6 +17,9 @@ class views_handler_area_whos_amung_us extends views_handler_area {
     }
   }
 
+  /**
+   * Set custom label in Views UI.
+   */
   public function label() {
     if (!isset($this->options['label'])) {
       return $this->ui_name();
@@ -16,6 +27,9 @@ class views_handler_area_whos_amung_us extends views_handler_area {
     return $this->options['label'];
   }
 
+  /**
+   * Defines default values for custom options.
+   */
   public function option_definition() {
     $options = parent::option_definition();
     $this->definition['field'] = !empty($this->definition['field']) ? $this->definition['field'] : '';
