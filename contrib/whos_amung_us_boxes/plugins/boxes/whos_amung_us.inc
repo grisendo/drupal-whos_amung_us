@@ -6,6 +6,7 @@
  *
  * @author Francisco J. Cruz Romanos <grisendo@gmail.com>
  */
+
 class whos_amung_us extends boxes_box {
 
   /**
@@ -45,7 +46,7 @@ class whos_amung_us extends boxes_box {
           'widget' => $options['widget'],
           'options' => $options,
           'id' => 'box' . rand(1, 999),
-        )
+        ),
       )
     );
   }

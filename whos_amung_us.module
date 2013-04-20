@@ -114,9 +114,11 @@ function whos_amung_us_block_info() {
   $sql = db_select('whos_amung_us_block', 'b')
     ->fields('b', array('bid', 'info', 'machine_name'))
     ->execute();
+  // Ventral review fix
+  $t = get_t();
   while ($row = $sql->fetchAssoc()) {
     $blocks[$row['machine_name']] = array(
-      'info' => t($row['info']),
+      'info' => $t($row['info']),
       'cache' => DRUPAL_CACHE_PER_ROLE,
     );
   }

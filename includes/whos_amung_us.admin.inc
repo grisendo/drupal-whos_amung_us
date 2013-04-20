@@ -451,7 +451,6 @@ function whos_amung_us_configuration_delete_form_submit($form, &$form_state) {
   drupal_set_message(t('The block "%name" has been removed.', array('%name' => $form_state['values']['block_title'])));
   cache_clear_all();
   $form_state['redirect'] = 'admin/structure/block';
-  return;
 
 }
 

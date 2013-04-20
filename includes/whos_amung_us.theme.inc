@@ -15,7 +15,9 @@ function theme_whos_amung_us($variables) {
   $widget = $variables['widget'];
   $conf = $variables['options'];
   $id = $variables['id'];
+
   switch ($widget) {
+
     case 'general':
       $conf = variable_get('whos_amung_us_configuration', whos_amung_us_default_form_values());
       if ($conf['widget'] == 'general') {
@@ -33,19 +35,25 @@ function theme_whos_amung_us($variables) {
         );
       }
       break;
+
     case 'colored':
       $options = ', "' . $conf['background'] . $conf['foreground'] . '"';
       break;
+
     case 'tab':
       $options = ', "' . $conf['position'] . '"';
       break;
+
     case 'map':
       $options = ', "' . $conf['width'] . '", "' . $conf['height'] . '", "' . $conf['map'] . '", "' . $conf['marker'] . '"';
       break;
+
     default:
       $options = '';
       break;
+
   }
+
   ob_start();
   $idshort = $id;
   if (isset($variables['api_key']) && $variables['api_key']) {

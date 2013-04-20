@@ -21,7 +21,7 @@ function whos_amung_us_boxes_boxes_plugins() {
       'class' => 'whos_amung_us',
       'file' => 'whos_amung_us.inc',
       'path' => $path,
-    )
+    ),
   );
   return $info;
 
