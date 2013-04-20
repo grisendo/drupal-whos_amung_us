@@ -3,8 +3,14 @@
 /**
  * @file
  * Ctools content-type plugin to provide a whos.amung.us form
+ *
+ * @author Francisco J. Cruz Romanos <grisendo@gmail.com>
  */
 
+/**
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
+ */
 $plugin = array(
   'title' => t("Whos.amung.us"),
   'description' => t("Whos.amung.us"),
@@ -13,6 +19,9 @@ $plugin = array(
   'icon' => 'icon_whos_amung_us.png',
 );
 
+/**
+ * Output function for the 'Whos.amung.us' content type.
+ */
 function whos_amung_us_ctools_whos_amung_us_content_type_render($subtype, $conf, $panel_args, $context) {
 
   $block = new stdClass();
@@ -30,6 +39,9 @@ function whos_amung_us_ctools_whos_amung_us_content_type_render($subtype, $conf,
 
 }
 
+/**
+ * The form to add or edit Whos.amung.us widget.
+ */
 function whos_amung_us_ctools_whos_amung_us_content_type_edit_form($form, &$form_state) {
 
   module_load_include('inc', 'whos_amung_us', 'includes/whos_amung_us.admin');
@@ -42,6 +54,9 @@ function whos_amung_us_ctools_whos_amung_us_content_type_edit_form($form, &$form
 
 }
 
+/**
+ * Save the Whos.amung.us widget.
+ */
 function whos_amung_us_ctools_whos_amung_us_content_type_edit_form_submit($form, &$form_state) {
 
   foreach (array_keys($form_state['plugin']['defaults']) as $key) {
@@ -52,12 +67,18 @@ function whos_amung_us_ctools_whos_amung_us_content_type_edit_form_submit($form,
 
 }
 
+/**
+ * Returns the administrative title for a Whos.amung.us widget.
+ */
 function whos_amung_us_ctools_whos_amung_us_content_type_admin_title($subtype, $conf, $context) {
 
   return t('Whos.amung.us: @widget', array('@widget' => $conf['widget']));
 
 }
 
+/**
+ * Display the administrative information for a Whos.amung.us widget.
+ */
 function whos_amung_us_ctools_whos_amung_us_content_type_admin_info($subtype, $conf) {
 
   return '';

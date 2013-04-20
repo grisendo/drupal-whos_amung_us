@@ -2,7 +2,7 @@
 
   Drupal.behaviors.whosAmungUsColorPicker = {
     attach: function (context, settings) {
-      $('.wau-has-color-picker:not(.color-processed)').each(
+      $('.wau-has-color-picker:not(.color-processed)', context).each(
         function () {
           var $this = $(this);
           var $id = $this.attr('id') + '-color-placeholder';

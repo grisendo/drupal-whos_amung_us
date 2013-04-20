@@ -3,6 +3,8 @@
 /**
  * @file
  * Whos.amung.us bean integration.
+ *
+ * @author Francisco J. Cruz Romanos <grisendo@gmail.com>
  */
 
 /**
@@ -32,4 +34,5 @@ function whos_amung_us_bean_bean_types() {
     'file' => 'whos_amung_us_bean.whos_amung_us.inc',
   );
   return $plugins;
+
 }

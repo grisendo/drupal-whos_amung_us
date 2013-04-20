@@ -1,5 +1,5 @@
 name = Whos.amung.us Boxes
-description = Whos.amung.us boxes integration.
+description = Whos.amung.us Boxes integration.
 package = Blocks
 core = 7.x
 dependencies[] = whos_amung_us

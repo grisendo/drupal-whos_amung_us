@@ -3,8 +3,13 @@
 /**
  * @file
  * Theme functions for Whos.amung.us module.
+ *
+ * @author Francisco J. Cruz Romanos <grisendo@gmail.com>
  */
 
+/**
+ * Theme function for the Whos.amung.us widget.
+ */
 function theme_whos_amung_us($variables) {
 
   $widget = $variables['widget'];

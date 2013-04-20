@@ -1,12 +1,10 @@
 <?php
 
-// TO-DO: Botón de intentar obtener una nueva clave, por AJAX y por carga normal. Cuidado seguridad!
-// TO-DO: Comprobar exportable features
-// TO-DO: Múltiples claves?
-
 /**
  * @file
  * Controls whos.amung.us blocks.
+ *
+ * @author Francisco J. Cruz Romanos <grisendo@gmail.com>
  */
 
 /**

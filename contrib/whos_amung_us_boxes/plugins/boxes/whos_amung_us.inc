@@ -3,6 +3,8 @@
 /**
  * @file
  * Boxes plugin for the Whos.amung.us module.
+ *
+ * @author Francisco J. Cruz Romanos <grisendo@gmail.com>
  */
 class whos_amung_us extends boxes_box {
 

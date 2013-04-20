@@ -1,5 +1,5 @@
 name = Whos.amung.us Bean
-description = Whos.amung.us views integration.
+description = Whos.amung.us Bean integration.
 package = Blocks
 core = 7.x
 dependencies[] = whos_amung_us

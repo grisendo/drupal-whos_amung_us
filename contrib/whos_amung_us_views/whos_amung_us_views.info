@@ -1,8 +1,7 @@
 name = Whos.amung.us Views
-description = Whos.amung.us views integration.
+description = Whos.amung.us Views integration.
 package = Blocks
 core = 7.x
 dependencies[] = whos_amung_us
 dependencies[] = views
 files[] = views/views_handler_area_whos_amung_us.inc
-

@@ -3,6 +3,8 @@
 /**
  * @file
  * Beans plugin for the Whos.amung.us module.
+ *
+ * @author Francisco J. Cruz Romanos <grisendo@gmail.com>
  */
 class WhosAmungUsBean extends BeanPlugin {
 

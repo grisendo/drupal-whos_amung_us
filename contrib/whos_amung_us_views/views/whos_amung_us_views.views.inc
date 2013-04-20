@@ -3,6 +3,8 @@
 /**
  * @file
  * Provide views data and handler information for Whos.amung.us module.
+ *
+ * @author Francisco J. Cruz Romanos <grisendo@gmail.com>
  */
 
 /**

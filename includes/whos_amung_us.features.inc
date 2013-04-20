@@ -3,6 +3,8 @@
 /**
  * @file
  * Intergrates Whos.amung.us with features.
+ *
+ * @author Francisco J. Cruz Romanos <grisendo@gmail.com>
  */
 
 /**

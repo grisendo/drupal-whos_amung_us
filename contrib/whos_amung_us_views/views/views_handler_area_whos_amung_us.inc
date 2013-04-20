@@ -3,6 +3,8 @@
 /**
  * @file
  * Provide views area handler for whos.amung.us module.
+ *
+ * @author Francisco J. Cruz Romanos <grisendo@gmail.com>
  */
 
 class views_handler_area_whos_amung_us extends views_handler_area {
