@@ -62,7 +62,8 @@ INSTALLATION
 3. Go to settings page via admin/config/services/whos-amung-us
    or Configuration -> Web services -> Whos.amung.us and configure the
    API key (if not auto-generated) and the default options.
-4. Create a whos.amung.us block via admin/structure/block/add-whos-amung-us-block
+4. Create a whos.amung.us block via:
+   admin/structure/block/add-whos-amung-us-block
    or Structure -> Blocks -> Add whos.amung.us block. You can create as
    many as you desire. Use the default options you configured before, or
    override them.
