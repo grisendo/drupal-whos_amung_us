@@ -19,6 +19,9 @@ function whos_amung_us_configuration_new_form() {
 
 }
 
+/**
+ * Menu callback for admin/config/services/whos-amung-us.
+ */
 function whos_amung_us_configuration_config_form() {
 
   $form_state = array(
@@ -28,6 +31,24 @@ function whos_amung_us_configuration_config_form() {
 
 }
 
+/**
+ * Returns the configuration form for a whos.amung.us block/widget.
+ *
+ * @param array $form
+ *   Nested array of form elements that comprise the form.
+ * @param array $form_state
+ *   An associated array of configuration options should be present in the
+ *   'values' key. If none are given, default configuration is assumed.
+ * @param string $id
+ *   The 'flavour' of the form, in order to identify which module is using
+ *   it (views, ctools...) or which form it is (block form, config form...).
+ * @param string $sublevel
+ *   The base #tree level where the form is, so the JS in Form API #states
+ *   is well declared using the correct triggers.
+ *
+ * @return
+ *   array The form in Form API format.
+ */
 function whos_amung_us_configuration_form($form, $form_state, $id = 'general', $sublevel = NULL) {
 
   $form = array();
@@ -335,7 +356,7 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general', $
 
 /**
  * Submit handler for the whos_amung_us_configuration_form() form
- * when creating a new block.
+ * when saving general options.
  */
 function whos_amung_us_configuration_form_general_submit($form, &$form_state) {
 
@@ -356,6 +377,10 @@ function whos_amung_us_configuration_form_general_submit($form, &$form_state) {
 
 }
 
+/**
+ * Submit handler for the whos_amung_us_configuration_form() form
+ * when creating a new block.
+ */
 function whos_amung_us_configuration_form_submit($form, &$form_state) {
 
   $config = array(
@@ -384,6 +409,9 @@ function whos_amung_us_configuration_form_submit($form, &$form_state) {
 
 }
 
+/**
+ * Auxiliar function for hook_block_configure().
+ */
 function _whos_amung_us_block_configure($delta = '') {
 
   $form = array();
@@ -398,6 +426,9 @@ function _whos_amung_us_block_configure($delta = '') {
 
 }
 
+/**
+ * Auxiliar function for hook_block_save().
+ */
 function _whos_amung_us_block_save($delta = '', $edit = array()) {
 
   $config = array(
@@ -423,6 +454,9 @@ function _whos_amung_us_block_save($delta = '', $edit = array()) {
 
 }
 
+/**
+ * Menu callback for admin/structure/block/delete-whos-amung-us-block/%whos_amung_us.
+ */
 function whos_amung_us_configuration_delete_form($form, &$form_state, $item) {
 
   $form['delta'] = array('#type' => 'hidden', '#value' => $item['machine_name']);
@@ -443,6 +477,9 @@ function whos_amung_us_configuration_delete_form($form, &$form_state, $item) {
 
 }
 
+/**
+ * Submit handler for the whos_amung_us_configuration_delete_form() form.
+ */
 function whos_amung_us_configuration_delete_form_submit($form, &$form_state) {
 
   db_delete('whos_amung_us_block')
@@ -454,6 +491,9 @@ function whos_amung_us_configuration_delete_form_submit($form, &$form_state) {
 
 }
 
+/**
+ * Auxiliar function for hook_form_FORM_ID_alter().
+ */
 function _whos_amung_us_form_block_admin_display_form_alter(&$form, $form_state) {
 
   $sql = db_select('whos_amung_us_block', 'b')
@@ -469,6 +509,12 @@ function _whos_amung_us_form_block_admin_display_form_alter(&$form, $form_state)
 
 }
 
+/**
+ * Try to get a new Whos.Amung.us API key via HTTP request.
+ *
+ * @return string
+ *   The new key, or NULL if the key couldn't be retrieved.
+ */
 function whos_amung_us_get_new_key() {
 
   $request = drupal_http_request(

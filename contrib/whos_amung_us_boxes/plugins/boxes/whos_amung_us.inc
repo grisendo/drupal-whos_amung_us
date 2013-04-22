@@ -46,8 +46,8 @@ class whos_amung_us extends boxes_box {
           'widget' => $options['widget'],
           'options' => $options,
           'id' => 'box' . rand(1, 999),
-        ),
-      )
+        )
+      ),
     );
   }
 

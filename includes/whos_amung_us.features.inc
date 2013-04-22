@@ -83,6 +83,15 @@ function whos_amung_us_features_export_rebuild($module) {
   whos_amung_us_features_revert($module);
 }
 
+/**
+ * Updates a whos.amung.us block in database.
+ *
+ * @param array $block
+ *   The database row array.
+ *
+ * @return bool
+ *   This function returns TRUE if everything went OK.
+ */
 function whos_amung_us_feature_update_block($block) {
 
   $block_exists = whos_amung_us_item_load($block['machine_name']);
