@@ -1,3 +1,9 @@
+/**
+ * JavaScript behaviors for the back-end display of whos_amung_us.
+ *
+ * @author Francisco J. Cruz Romanos <grisendo@gmail.com>
+ */
+
 (function ($) {
 
   Drupal.behaviors.whosAmungUsColorPicker = {

@@ -62,6 +62,16 @@ function whos_amung_us_item_load($name) {
 
 }
 
+/**
+ * Loads a whos.amung.us custom block, function for hook_menu.
+ *
+ * @param string $name
+ *   The unique whos.amung.us block machine name.
+ *
+ * @return array
+ *   A fully-loaded whos.amung.us block upon successful load,
+ *   or FALSE if it can't be loaded
+ */
 function whos_amung_us_load($name) {
 
   $item = whos_amung_us_item_load($name);
@@ -114,7 +124,7 @@ function whos_amung_us_block_info() {
   $sql = db_select('whos_amung_us_block', 'b')
     ->fields('b', array('bid', 'info', 'machine_name'))
     ->execute();
-  // Ventral review fix
+  // Ventral review fix.
   $t = get_t();
   while ($row = $sql->fetchAssoc()) {
     $blocks[$row['machine_name']] = array(
@@ -157,6 +167,15 @@ function whos_amung_us_block_save($delta = '', $edit = array()) {
 
 }
 
+/**
+ * Determines if a custom block exists.
+ *
+ * @param string $name
+ *   The unique whos.amung.us block machine name.
+ *
+ * @return bool
+ *   TRUE if block exists, FALSE if not.
+ */
 function whos_amung_us_name_exists($name) {
 
   $item = whos_amung_us_item_load($name);
@@ -169,6 +188,15 @@ function whos_amung_us_name_exists($name) {
 
 }
 
+/**
+ * Render a whos_amung_us block content given its name.
+ *
+ * @param string $name
+ *   The unique whos.amung.us block machine name.
+ *
+ * @return string
+ *   Rendered HTML, empty text if not exists.
+ */
 function whos_amung_us_load_render($name) {
 
   $item = whos_amung_us_item_load($name);
@@ -179,6 +207,15 @@ function whos_amung_us_load_render($name) {
 
 }
 
+/**
+ * Render a whos_amung_us block content database row array.
+ *
+ * @param array $item
+ *   The whos.amung.us database row array.
+ *
+ * @return string
+ *   Rendered HTML, empty text if not exists.
+ */
 function whos_amung_us_render($item) {
 
   if (!is_array($item['config'])) {
@@ -199,6 +236,12 @@ function whos_amung_us_render($item) {
 
 }
 
+/**
+ * Default values for the whos_amung_us forms.
+ *
+ * @return array
+ *   Default values.
+ */
 function whos_amung_us_default_form_values() {
 
   return array(
@@ -216,6 +259,9 @@ function whos_amung_us_default_form_values() {
 
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
 function whos_amung_us_form_block_admin_display_form_alter(&$form, $form_state) {
 
   module_load_include('inc', 'whos_amung_us', 'includes/whos_amung_us.admin');
@@ -223,6 +269,9 @@ function whos_amung_us_form_block_admin_display_form_alter(&$form, $form_state) 
 
 }
 
+/**
+ * Implements hook_features_api().
+ */
 function whos_amung_us_features_api() {
 
   return array(
