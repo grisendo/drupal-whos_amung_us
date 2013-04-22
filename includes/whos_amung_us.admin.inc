@@ -355,8 +355,7 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general', $
 }
 
 /**
- * Submit handler for the whos_amung_us_configuration_form() form.
- * It's used when saving general options.
+ * Submit handler for the options whos_amung_us_configuration_form() form.
  */
 function whos_amung_us_configuration_form_general_submit($form, &$form_state) {
 
@@ -378,8 +377,7 @@ function whos_amung_us_configuration_form_general_submit($form, &$form_state) {
 }
 
 /**
- * Submit handler for the whos_amung_us_configuration_form() form.
- * It's used when creating a new block.
+ * Submit handler for the new-block whos_amung_us_configuration_form() form.
  */
 function whos_amung_us_configuration_form_submit($form, &$form_state) {
 
