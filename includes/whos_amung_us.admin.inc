@@ -46,8 +46,8 @@ function whos_amung_us_configuration_config_form() {
  *   The base #tree level where the form is, so the JS in Form API #states
  *   is well declared using the correct triggers.
  *
- * @return
- *   array The form in Form API format.
+ * @return array
+ *   The form in Form API format.
  */
 function whos_amung_us_configuration_form($form, $form_state, $id = 'general', $sublevel = NULL) {
 
@@ -355,8 +355,8 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general', $
 }
 
 /**
- * Submit handler for the whos_amung_us_configuration_form() form
- * when saving general options.
+ * Submit handler for the whos_amung_us_configuration_form() form.
+ * It's used when saving general options.
  */
 function whos_amung_us_configuration_form_general_submit($form, &$form_state) {
 
@@ -378,8 +378,8 @@ function whos_amung_us_configuration_form_general_submit($form, &$form_state) {
 }
 
 /**
- * Submit handler for the whos_amung_us_configuration_form() form
- * when creating a new block.
+ * Submit handler for the whos_amung_us_configuration_form() form.
+ * It's used when creating a new block.
  */
 function whos_amung_us_configuration_form_submit($form, &$form_state) {
 
@@ -455,7 +455,7 @@ function _whos_amung_us_block_save($delta = '', $edit = array()) {
 }
 
 /**
- * Menu callback for admin/structure/block/delete-whos-amung-us-block/%whos_amung_us.
+ * Menu callback for admin/structure/block/delete-whos-amung-us-block/%.
  */
 function whos_amung_us_configuration_delete_form($form, &$form_state, $item) {
 
