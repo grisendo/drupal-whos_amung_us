@@ -98,7 +98,7 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general', $
     ),
   );
 
-  if ($id == 'newblock') {
+  if (($id == 'newblock') || ($id == 'block')) {
 
     $form['name'] = array(
       '#type' => 'textfield',
@@ -106,6 +106,10 @@ function whos_amung_us_configuration_form($form, $form_state, $id = 'general', $
       '#max_length' => 64,
       '#default_value' => $config['name'],
     );
+
+  }
+
+  if ($id == 'newblock') {
 
     $form['mname'] = array(
       '#type' => 'machine_name',
